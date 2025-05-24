@@ -1,4 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import {
+    createContext,
+    useContext,
+    //useState
+} from "react";
 import type { Theme } from "../utils/interfaces";
 
 //import blue from "../styles/themes/blue";
@@ -13,17 +17,19 @@ const ThemeContext = createContext<IThemeContext>({} as IThemeContext)
 
 const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
 
-    const [theme, setTheme] = useState<Theme>(() => {
-        const savedTheme = localStorage.getItem('theme')
+    // const [theme, setTheme] = useState<Theme>(() => {
+    //     const savedTheme = localStorage.getItem('theme')
 
-        if (savedTheme) {
-            return JSON.parse(savedTheme)
-        } else {
-            return green
-        }
-    })
+    //     if (savedTheme) {
+    //         return JSON.parse(savedTheme)
+    //     } else {
+    //         return green
+    //     }
+    // })
 
-    setTheme(green)
+    // setTheme(green)
+
+    const theme = green
     
     return (
         <ThemeContext.Provider value={{ theme }}>

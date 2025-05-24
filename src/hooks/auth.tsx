@@ -1,4 +1,8 @@
-import { createContext, useContext, useState } from "react"
+import {
+    createContext,
+    useContext,
+    //useState
+} from "react"
 
 interface IAuthContext {
     logged: boolean
@@ -8,12 +12,14 @@ const AuthContext = createContext<IAuthContext>({} as IAuthContext)
 
 const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
 
-    const [logged, setLogged] = useState<boolean>(() => {
-        const isLogged = localStorage.getItem('logged')
-        return !!isLogged
-    })
+    // const [logged, setLogged] = useState<boolean>(() => {
+    //     const isLogged = localStorage.getItem('logged')
+    //     return !!isLogged
+    // })
 
-    setLogged(false)
+    // setLogged(false)
+
+    const logged = false
     
     return (
         <AuthContext.Provider value={{ logged }}>
