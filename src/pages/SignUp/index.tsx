@@ -1,12 +1,12 @@
 import { Button, Container, Content, Fields, Form } from "./styles"
 import InputWithLabel from "../../components/InputWithLabel"
 
-const SignIn: React.FC = () => {
+const SignUp: React.FC = () => {
     return (
         <Container>
             <Content>
                 <Form>
-                    <h1>Login</h1>
+                    <h1>Registro</h1>
 
                     <div>
                         <Fields>
@@ -19,11 +19,16 @@ const SignIn: React.FC = () => {
                                 label="Senha"
                                 onChange={() => {}}
                             />
+
+                            <InputWithLabel
+                                label="Confirmar Senha"
+                                onChange={() => {}}
+                            />
                         </Fields>
 
                         <p>
-                            Não tem acesso ainda?
-                            <a href="/sign-up">Registrar.</a>
+                            Já possui acesso?
+                            <a href="/sign-in"> Logar.</a>
                         </p>
                     </div>
 
@@ -34,4 +39,4 @@ const SignIn: React.FC = () => {
     )
 }
 
-export default SignIn
+export default SignUp

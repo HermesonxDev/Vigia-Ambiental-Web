@@ -13,6 +13,8 @@ const AuthProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
         return !!isLogged
     })
 
+    setLogged(false)
+    
     return (
         <AuthContext.Provider value={{ logged }}>
             { children }

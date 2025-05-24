@@ -1,13 +1,14 @@
 export default {
     title: 'neutral',
     colors: {
-        Primária: '#37474F',
-        Secundária: '#2E7D61',
-        Terciária: '#4DB6AC',
-        Branco: '#FFFFFF',
-        Preto: '#1A1A1A',
+        primary: '#37474F',
+        secondary: '#2E7D61',
+        tertiary: '#4DB6AC',
+        white: '#FFFFFF',
+        black: '#1A1A1A',
+        gray: '#D9D9D9',
         Sucesso: '#66BB6A',
-        Info: '#29B6F6',
-        Warning: '#FFA000'
+        info: '#29B6F6',
+        warning: '#FFA000'
     }
 }

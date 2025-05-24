@@ -1,9 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import type { Theme } from "../utils/interfaces";
 
-import blue from "../styles/themes/blue";
+//import blue from "../styles/themes/blue";
 import green from "../styles/themes/green";
-import neutral from "../styles/themes/neutral";
+//import neutral from "../styles/themes/neutral";
 
 interface IThemeContext {
     theme: Theme
@@ -19,10 +19,12 @@ const ThemeProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
         if (savedTheme) {
             return JSON.parse(savedTheme)
         } else {
-            return blue
+            return green
         }
     })
 
+    setTheme(green)
+    
     return (
         <ThemeContext.Provider value={{ theme }}>
             { children }
