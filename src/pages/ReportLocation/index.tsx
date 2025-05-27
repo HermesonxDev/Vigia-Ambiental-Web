@@ -1,49 +1,43 @@
 import InputWithLabel from "../../components/InputWithLabel"
-import SelectWithLabel from "../../components/SelectWithLabel"
+import TextareaWithLabel from "../../components/TextareaWithLabel"
 import Title from "../../components/Title"
-import { useTheme } from "../../hooks/theme"
 import { Button, Container, Fields, Form } from "./style"
 
-const Profile: React.FC = () => {
-
-    const { theme } = useTheme()
-
-    const themeOptions = [
-        { value: 'green', label: 'Verde' },
-        { value: 'blue', label: 'Azul' },
-        { value: 'neutral', label: 'Neutro' }
-    ];
-
+const ReportLocation: React.FC = () => {
     return (
         <Container>
-            <Title>Perfil</Title>
+            <Title afterWidth="100px">Denunciar Local</Title>
 
             <Form>
                 <Fields>
                     <InputWithLabel
-                        label="Nome"
+                        label="Rua"
                         width="30%"
                         onChange={() => {}}
                     />
 
                     <InputWithLabel
-                        label="Email"
+                        label="Número"
                         width="30%"
                         onChange={() => {}}
                     />
 
                     <InputWithLabel
-                        label="Senha"
+                        label="Bairro"
                         width="30%"
                         onChange={() => {}}
                     />
 
-                    <SelectWithLabel
-                        label="Tema"
+                    <InputWithLabel
+                        label="Ponto de Referência"
                         width="30%"
-                        value={theme.title}
                         onChange={() => {}}
-                        options={themeOptions}
+                    />
+
+                    <TextareaWithLabel
+                        label="Descreva o Problema"
+                        width="30%"
+                        onChange={() => {}}
                     />
                 </Fields>
 
@@ -53,4 +47,4 @@ const Profile: React.FC = () => {
     )
 }
 
-export default Profile
+export default ReportLocation

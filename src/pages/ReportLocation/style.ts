@@ -15,8 +15,8 @@ export const Form = styled.form`
     justify-content: space-between;
 `;
 
-
 export const Fields = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;

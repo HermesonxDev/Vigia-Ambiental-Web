@@ -17,7 +17,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
                         Perfil
                     </Link>
 
-                    <Link href="">
+                    <Link href="/report-location">
                         <Icon src={Camera} />
                         Denunciar Local
                     </Link>
