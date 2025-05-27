@@ -7,6 +7,7 @@ interface IInputWithLabelProps {
     required?: boolean,
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
     width?: string,
+    height?: string,
     type?: string,
     accept?: string,
     maxLength?: number
@@ -18,6 +19,7 @@ const InputWithLabel: React.FC<IInputWithLabelProps> = ({
     required,
     onChange,
     width,
+    height,
     type = 'text',
     accept,
     maxLength
@@ -32,7 +34,7 @@ const InputWithLabel: React.FC<IInputWithLabelProps> = ({
     };
 
     return (
-        <Container width={width}>
+        <Container width={width} height={height}>
             <Label isFocused={isFocused || value !== ''}>
                 {label}
             </Label>

@@ -44,6 +44,7 @@ export const Link = styled.a`
     flex-direction: row;
     align-items: center;
     gap: 5px;
+    transition: .3s;
 
     &:hover {
         background-color: ${props => props.theme.colors.primary};
@@ -60,7 +61,7 @@ export const Content = styled.div `
     grid-area: CT;
     color: ${props => props.theme.colors.white};
     background: ${props => props.theme.colors.tertiary};
-    padding: 25px;
+    padding: 15px;
     height: calc(100vh - 70px);
     overflow-y: scroll;
 

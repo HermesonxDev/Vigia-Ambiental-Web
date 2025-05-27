@@ -12,7 +12,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
                 <h1>Vigia Ambiental</h1>
 
                 <div>
-                    <Link href="">
+                    <Link href="/profile">
                         <Icon src={Profile} />
                         Perfil
                     </Link>

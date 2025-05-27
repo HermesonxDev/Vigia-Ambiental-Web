@@ -6,7 +6,7 @@ export default {
         tertiary: '#A8DADC',
         white: '#FFFFFF',
         black: '#1A1A1A',
-        gray: '#D9D9D9',
+        gray: '#666',
         success: '#4CAF50',
         info: '#2196F3',
         warning: '#FFC107'
