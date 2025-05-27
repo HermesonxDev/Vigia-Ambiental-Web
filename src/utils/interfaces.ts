@@ -12,3 +12,21 @@ export interface Theme {
         warning: string
     }
 }
+
+export interface SignUpForm {
+    name: string,
+    email: string,
+    password: string
+}
+
+export interface NotificationTypes {
+    error: boolean,
+    email: boolean,
+    update: boolean,
+    success: boolean
+}
+
+export interface NotificationContent {
+    title: string,
+    message: string
+}

@@ -10,49 +10,47 @@ const ReportLocation: React.FC = () => {
             <Title afterWidth="100px">Denunciar Local</Title>
 
             <Form>
-                <div>
-                    <Fields>
-                        <InputWithLabel
-                            label="Rua"
-                            width="30%"
-                            onChange={() => {}}
-                            required
-                        />
+                <Fields>
+                    <InputWithLabel
+                        label="Rua"
+                        width="30%"
+                        onChange={() => {}}
+                        required
+                    />
 
-                        <InputWithLabel
-                            label="Número"
-                            width="30%"
-                            onChange={() => {}}
-                            required
-                        />
+                    <InputWithLabel
+                        label="Número"
+                        width="30%"
+                        onChange={() => {}}
+                        required
+                    />
 
-                        <InputWithLabel
-                            label="Bairro"
-                            width="30%"
-                            onChange={() => {}}
-                            required
-                        />
+                    <InputWithLabel
+                        label="Bairro"
+                        width="30%"
+                        onChange={() => {}}
+                        required
+                    />
 
-                        <InputWithLabel
-                            label="Ponto de Referência"
-                            width="30%"
-                            onChange={() => {}}
-                            required
-                        />
+                    <InputWithLabel
+                        label="Ponto de Referência"
+                        width="30%"
+                        onChange={() => {}}
+                        required
+                    />
 
-                        <TextareaWithLabel
-                            label="Descreva o Problema"
-                            width="30%"
-                            onChange={() => {}}
-                            required
-                        />
+                    <TextareaWithLabel
+                        label="Descreva o Problema"
+                        width="30%"
+                        onChange={() => {}}
+                        required
+                    />
 
-                        <div>
-                            <input type="file" name="" id="" />
-                            <img src={Profile} alt="Foto do Local" width={100}/>
-                        </div>
-                    </Fields>
-                </div>
+                    <div>
+                        <input type="file" name="" id="" />
+                        <img src={Profile} alt="Foto do Local" width={100}/>
+                    </div>
+                </Fields>
 
                 <Button>Denunciar</Button>
             </Form>

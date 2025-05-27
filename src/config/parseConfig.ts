@@ -1,4 +1,4 @@
-import Parse from "parse/types/Parse";
+import Parse from 'parse';
 
 Parse.initialize(
     import.meta.env.BACK4APP_APPID,

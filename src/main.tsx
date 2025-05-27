@@ -3,13 +3,19 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import { ThemeProvider } from './hooks/theme.tsx'
 import { AuthProvider } from './hooks/auth.tsx'
+import { Back4AppProvider } from './hooks/back4app.tsx'
+import { LogProvider } from './hooks/log.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AuthProvider>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
-    </AuthProvider>
+    <LogProvider>
+      <AuthProvider>
+        <Back4AppProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </Back4AppProvider>
+      </AuthProvider>
+    </LogProvider>
   </StrictMode>,
 )
