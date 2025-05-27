@@ -14,5 +14,4 @@ export default {
 }
 
 //C8E6C9
-//66BB6A
 //2E7D32
