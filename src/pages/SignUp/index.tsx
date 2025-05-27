@@ -1,14 +1,14 @@
 import { Button, Container, Content, Fields, Form } from "./styles"
 import InputWithLabel from "../../components/InputWithLabel"
-import type { SignUpForm } from "../../utils/interfaces"
-import { useState } from "react"
+import type { AuthForm } from "../../utils/interfaces"
 import { useBack4App } from "../../hooks/back4app"
+import { useState } from "react"
 
 const SignUp: React.FC = () => {
 
     const { register } = useBack4App()
     
-    const [formState, setFormState] = useState<SignUpForm>({
+    const [formState, setFormState] = useState<AuthForm>({
         name: '',
         email: '',
         password: ''
@@ -16,7 +16,7 @@ const SignUp: React.FC = () => {
 
     const handleChangeForm = (
         event: React.ChangeEvent<HTMLInputElement>,
-        key: keyof SignUpForm
+        key: keyof AuthForm
     ) => {
         const { value } = event.target as HTMLInputElement
         setFormState((prev) => {
@@ -24,7 +24,6 @@ const SignUp: React.FC = () => {
             return updatedState
         })
     }
-
 
     return (
         <Container>

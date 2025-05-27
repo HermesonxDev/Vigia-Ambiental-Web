@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom"
-import { useAuth } from "../hooks/auth"
 import AuthRoutes from "./auth.routes"
 import AppRoutes from "./app.routes"
+import { useBack4App } from "../hooks/back4app"
 
 const Routes: React.FC = () => {
 
-    const { logged } = useAuth()
+    const { logged } = useBack4App()
 
     return (
         <BrowserRouter>

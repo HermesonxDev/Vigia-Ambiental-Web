@@ -13,8 +13,8 @@ export interface Theme {
     }
 }
 
-export interface SignUpForm {
-    name: string,
+export interface AuthForm {
+    name?: string,
     email: string,
     password: string
 }
