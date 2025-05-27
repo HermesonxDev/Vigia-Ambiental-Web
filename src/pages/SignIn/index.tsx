@@ -13,11 +13,13 @@ const SignIn: React.FC = () => {
                             <InputWithLabel
                                 label="Email"
                                 onChange={() => {}}
+                                required
                             />
 
                             <InputWithLabel
                                 label="Senha"
                                 onChange={() => {}}
+                                required
                             />
                         </Fields>
 

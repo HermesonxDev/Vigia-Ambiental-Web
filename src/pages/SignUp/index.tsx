@@ -11,18 +11,21 @@ const SignUp: React.FC = () => {
                     <div>
                         <Fields>
                             <InputWithLabel
+                                label="Nome"
+                                onChange={() => {}}
+                                required
+                            />
+
+                            <InputWithLabel
                                 label="Email"
                                 onChange={() => {}}
+                                required
                             />
 
                             <InputWithLabel
                                 label="Senha"
                                 onChange={() => {}}
-                            />
-
-                            <InputWithLabel
-                                label="Confirmar Senha"
-                                onChange={() => {}}
+                                required
                             />
                         </Fields>
 

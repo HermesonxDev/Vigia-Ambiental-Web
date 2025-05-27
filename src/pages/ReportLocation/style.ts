@@ -20,6 +20,12 @@ export const Fields = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 `;
 
 export const Button = styled.button`
