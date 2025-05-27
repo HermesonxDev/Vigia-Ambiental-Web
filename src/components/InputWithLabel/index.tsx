@@ -10,7 +10,7 @@ interface IInputWithLabelProps {
     height?: string,
     type?: string,
     accept?: string,
-    maxLength?: number
+    maxLength?: number,
 }
 
 const InputWithLabel: React.FC<IInputWithLabelProps> = ({
@@ -22,7 +22,7 @@ const InputWithLabel: React.FC<IInputWithLabelProps> = ({
     height,
     type = 'text',
     accept,
-    maxLength
+    maxLength,
 }) => {
 
     const [isFocused, setIsFocused] = useState(false);

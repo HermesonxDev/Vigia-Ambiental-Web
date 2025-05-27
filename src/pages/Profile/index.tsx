@@ -24,18 +24,21 @@ const Profile: React.FC = () => {
                         label="Nome"
                         width="30%"
                         onChange={() => {}}
+                        // labelBackground="tertiary"
                     />
 
                     <InputWithLabel
                         label="Email"
                         width="30%"
                         onChange={() => {}}
+                        // labelBackground="tertiary"
                     />
 
                     <InputWithLabel
                         label="Senha"
                         width="30%"
                         onChange={() => {}}
+                        // labelBackground="tertiary"
                     />
 
                     <SelectWithLabel
@@ -44,6 +47,7 @@ const Profile: React.FC = () => {
                         value={theme.title}
                         onChange={() => {}}
                         options={themeOptions}
+                        // labelBackground="tertiary"
                     />
                 </Fields>
 

@@ -43,15 +43,16 @@ const Back4AppProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) =
             const response = await user.signUp()
             console.log(response)
 
-            setLogged(true)
-            localStorage.setItem('logged', 'true')
+            // setLogged(true)
+            // localStorage.setItem('logged', 'true')
 
-            activeNotification('success')
-            setNotificationContent({
-                title: 'Usuário criado com sucesso!',
-                message: ''
-            })
+            // activeNotification('success')
+            // setNotificationContent({
+            //     title: 'Usuário criado com sucesso!',
+            //     message: ''
+            // })
         } catch (error) {
+            console.log(error)
             activeNotification('error')
             setNotificationContent({
                 title: 'Erro ao criar usuário',

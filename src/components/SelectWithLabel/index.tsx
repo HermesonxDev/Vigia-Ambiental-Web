@@ -7,10 +7,17 @@ interface ISelectWithLabelProps {
   required?: boolean,
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void,
   options: { value: string; label: string }[],
-  width?: string
+  width?: string,
 }
 
-const SelectWithLabel: React.FC<ISelectWithLabelProps> = ({ label, value, required, onChange, options, width }) => {
+const SelectWithLabel: React.FC<ISelectWithLabelProps> = ({
+    label,
+    value,
+    required,
+    onChange,
+    options,
+    width
+}) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (

@@ -1,12 +1,11 @@
-// SelectWithFloatingLabel.styles.ts
 import styled from 'styled-components';
 
 interface ContainerProps {
     width?: string;
 }
 
-interface LabelProps {
-    isFocused: boolean;
+interface ILabelProps {
+  isFocused: boolean,
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -16,17 +15,13 @@ export const Container = styled.div<ContainerProps>`
     flex-grow: 1;
 `;
 
-export const Label = styled.label<LabelProps>`
+export const Label = styled.label<ILabelProps>`
     position: absolute;
     top: ${({ isFocused }) => (isFocused ? '-0.625rem' : '50%')};
     left: ${({ isFocused }) => (isFocused ? '0px' : '12px')};
     font-size: ${({ isFocused }) => (isFocused ? '0.75rem' : '1rem')};
     color: ${props => props.theme.colors.gray};
-    background-color: ${({ isFocused }) => (
-      isFocused
-        ? props => props.theme.colors.tertiary
-        : '#ffffff'
-    )};
+    background-color: transparent;
     padding: 0 4px;
     transform: translateY(-50%);
     transition: 0.2s ease all;

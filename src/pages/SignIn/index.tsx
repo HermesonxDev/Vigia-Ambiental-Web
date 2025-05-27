@@ -41,6 +41,7 @@ const SignIn: React.FC = () => {
 
                             <InputWithLabel
                                 label="Senha"
+                                type="password"
                                 value={formState.password}
                                 onChange={(e) => handleChangeForm(e, 'password')}
                                 required
