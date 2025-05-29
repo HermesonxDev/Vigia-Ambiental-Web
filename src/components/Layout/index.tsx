@@ -7,11 +7,14 @@ import { useFirestore } from "../../hooks/firestore"
 
 const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
 
-    const { signOut } = useFirestore()
+    const { user, signOut } = useFirestore()
 
     return (
         <Container>
-            <MainHeader />
+            <MainHeader>
+                <div />
+                <h3>{user?.name}</h3>
+            </MainHeader>
             <Aside>
                 <h1>Vigia Ambiental</h1>
 

@@ -12,6 +12,15 @@ export const Container = styled.div`
 export const MainHeader = styled.div`
     grid-area: MH;
     background: ${props => props.theme.colors.secondary};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    > h3 {
+        color: ${props => props.theme.colors.white};
+    }
 `;
 
 export const Aside = styled.div `

@@ -1,6 +1,6 @@
 import { Button, Container, Content, Fields, Form } from "./styles"
 import InputWithLabel from "../../components/InputWithLabel"
-import type { AuthForm } from "../../utils/interfaces"
+import type { UserForm } from "../../utils/interfaces"
 import { useState } from "react"
 import { useFirestore } from "../../hooks/firestore"
 
@@ -8,7 +8,7 @@ const SignUp: React.FC = () => {
 
     const { signUp } = useFirestore()
     
-    const [formState, setFormState] = useState<AuthForm>({
+    const [formState, setFormState] = useState<UserForm>({
         name: '',
         email: '',
         password: ''
@@ -16,7 +16,7 @@ const SignUp: React.FC = () => {
 
     const handleChangeForm = (
         event: React.ChangeEvent<HTMLInputElement>,
-        key: keyof AuthForm
+        key: keyof UserForm
     ) => {
         const { value } = event.target as HTMLInputElement
         setFormState((prev) => {

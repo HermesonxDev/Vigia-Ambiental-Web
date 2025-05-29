@@ -13,6 +13,8 @@ import {
     initializeFirestore,
     persistentLocalCache,
     persistentMultipleTabManager,
+    doc,
+    setDoc,
 } from "firebase/firestore";
 
 import {
@@ -21,7 +23,7 @@ import {
     signInWithEmailAndPassword
 } from "firebase/auth";
 
-import type { AuthForm, IUserProps } from "../utils/interfaces";
+import type { UserForm, IUserProps } from "../utils/interfaces";
 
 import { useLog } from "./log";
 
@@ -30,14 +32,19 @@ let firestoreInstance: ReturnType<typeof getFirestoreDB> | null = null;
 interface IFirestoreContext {
     logged: boolean,
     user: IUserProps | null,
-    signUp(event: React.FormEvent<HTMLFormElement>, formState: AuthForm): void,
-    signIn(event: React.FormEvent<HTMLFormElement>, formState: AuthForm): void,
+    signUp(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
+    signIn(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
     signOut(): void,
     getFirestore: (collectionName: string) => {
         documents: any[],
         loading: boolean,
         error: Error | null
-    }
+    },
+    editUser(
+        event: React.FormEvent<HTMLFormElement>,
+        id: string | null | undefined,
+        name: string | null | undefined
+    ): void
 }
 
 
@@ -79,7 +86,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
 
 
     
-    const signUp = async (event: React.FormEvent<HTMLFormElement>, formState: AuthForm) => {
+    const signUp = async (event: React.FormEvent<HTMLFormElement>, formState: UserForm) => {
         event.preventDefault();
         
         try {
@@ -141,7 +148,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
 
 
 
-    const signIn = async (event: React.FormEvent<HTMLFormElement>, formState: AuthForm) => {
+    const signIn = async (event: React.FormEvent<HTMLFormElement>, formState: UserForm) => {
         event.preventDefault();
     
         try {
@@ -195,6 +202,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
     const signOut = () => {
         setLogged(false)
         localStorage.removeItem('logged')
+        localStorage.removeItem('user')
     }
 
 
@@ -259,6 +267,37 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         return { documents, loading, error };
     };
 
+
+
+    const editUser = async (event: React.FormEvent<HTMLFormElement>, id: string, name: string) => {
+        event.preventDefault();
+    
+        try {
+            if (id) {
+                const userRef = doc(db, "users", id);
+                const response = await setDoc(
+                    userRef,
+                    { name },
+                    { merge: true }
+                )
+
+                console.log(response)
+                activeNotification('success')
+                setNotificationContent({
+                    title: 'Usuário editado com sucesso!',
+                    message: ''
+                })
+            }
+        } catch (error) {
+            activeNotification("error")
+            setNotificationContent({
+                title: "Erro ao editar usuário",
+                message: `editUser(), ${String(error)}`
+            })
+        }
+    }
+
+
     return (
         <FirestoreContext.Provider value={{
             logged,
@@ -266,7 +305,8 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
             signUp,
             signIn,
             signOut,
-            getFirestore
+            getFirestore,
+            editUser
         }}>
             {children}
         </FirestoreContext.Provider>

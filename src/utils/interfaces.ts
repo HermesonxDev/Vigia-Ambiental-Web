@@ -13,7 +13,8 @@ export interface Theme {
     }
 }
 
-export interface AuthForm {
+export interface UserForm {
+    uid?: string,
     name?: string,
     email: string,
     password: string
