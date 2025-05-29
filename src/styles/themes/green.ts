@@ -12,6 +12,3 @@ export default {
         warning: '#FF9800'
     }
 }
-
-//C8E6C9
-//2E7D32

@@ -7,7 +7,7 @@ export default {
         white: '#FFFFFF',
         black: '#1A1A1A',
         gray: '#666',
-        Sucesso: '#66BB6A',
+        success: '#66BB6A',
         info: '#29B6F6',
         warning: '#FFA000'
     }
