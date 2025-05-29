@@ -3,8 +3,12 @@ import Profile from "../../assets/img/FaUserCircle.png"
 import Camera from "../../assets/img/MdAddAPhoto.png"
 import List from "../../assets/img/FaListCheck.png"
 import Power from "../../assets/img/FaPowerOff.png"
+import { useFirestore } from "../../hooks/firestore"
 
 const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
+
+    const { signOut } = useFirestore()
+
     return (
         <Container>
             <MainHeader />
@@ -27,7 +31,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
                         Acomp. Denuncias
                     </Link>
 
-                    <Link href="">
+                    <Link onClick={signOut}>
                         <Icon src={Power} />
                         Sair
                     </Link>

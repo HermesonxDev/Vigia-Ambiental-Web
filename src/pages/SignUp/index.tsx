@@ -1,12 +1,12 @@
 import { Button, Container, Content, Fields, Form } from "./styles"
 import InputWithLabel from "../../components/InputWithLabel"
 import type { AuthForm } from "../../utils/interfaces"
-import { useBack4App } from "../../hooks/back4app"
 import { useState } from "react"
+import { useFirestore } from "../../hooks/firestore"
 
 const SignUp: React.FC = () => {
 
-    const { register } = useBack4App()
+    const { signUp } = useFirestore()
     
     const [formState, setFormState] = useState<AuthForm>({
         name: '',
@@ -28,7 +28,7 @@ const SignUp: React.FC = () => {
     return (
         <Container>
             <Content>
-                <Form onSubmit={(e) => register(e, formState)}>
+                <Form onSubmit={(e) => signUp(e, formState)}>
                     <h1>Registro</h1>
 
                     <div>

@@ -30,3 +30,13 @@ export interface NotificationContent {
     title: string,
     message: string
 }
+
+export interface IUserProps {
+    uid: string,
+    name: string,
+    email: string,
+    created_at: string,
+    updated_at: string,
+    deleted_at: string,
+    last_access: string
+}

@@ -1,12 +1,12 @@
 import { Button, Container, Content, Fields, Form } from "./styles"
 import InputWithLabel from "../../components/InputWithLabel"
 import type { AuthForm } from "../../utils/interfaces"
-import { useBack4App } from "../../hooks/back4app"
 import { useState } from "react"
+import { useFirestore } from "../../hooks/firestore"
 
 const SignIn: React.FC = () => {
 
-    const { login } = useBack4App()
+    const { signIn } = useFirestore()
     
     const [formState, setFormState] = useState<AuthForm>({
         email: '',
@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
     return (
         <Container>
             <Content>
-                <Form onSubmit={(e) => login(e, formState)}>
+                <Form onSubmit={(event) => signIn(event, formState)}>
                     <h1>Login</h1>
 
                     <div>
