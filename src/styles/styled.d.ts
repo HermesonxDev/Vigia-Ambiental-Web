@@ -12,7 +12,8 @@ declare module 'styled-components' {
             gray: string,
             success: string,
             info: string,
-            warning: string
+            warning: string,
+            fail: string
         }
     }
 }

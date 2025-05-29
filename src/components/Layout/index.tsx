@@ -29,7 +29,7 @@ const Layout: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
                         Denunciar Local
                     </Link>
 
-                    <Link href="">
+                    <Link href="/list-reports">
                         <Icon src={List} />
                         Acomp. Denuncias
                     </Link>

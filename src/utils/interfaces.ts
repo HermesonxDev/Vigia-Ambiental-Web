@@ -9,7 +9,8 @@ export interface Theme {
         gray: string,
         success: string,
         info: string,
-        warning: string
+        warning: string,
+        fail: string
     }
 }
 
@@ -49,4 +50,18 @@ export interface IUserProps {
     updated_at: string,
     deleted_at: string,
     last_access: string
+}
+
+export interface IReportProps {
+    id: string,
+    description: string,
+    neighborhood: string,
+    number: string,
+    referencePoint: string,
+    reportingUserId: string,
+    street: string,
+    status: string,
+    created_at: string,
+    updated_at: string,
+    deleted_at: string
 }

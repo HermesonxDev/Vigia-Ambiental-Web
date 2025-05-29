@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import firebaseConfig from "../config/firebase";
 import { FirebaseError, initializeApp } from "firebase/app";
 
@@ -7,7 +7,6 @@ import {
     collection,
     getDocs,
     query,
-    QuerySnapshot,
     where,
     addDoc,
     initializeFirestore,
@@ -23,7 +22,7 @@ import {
     signInWithEmailAndPassword
 } from "firebase/auth";
 
-import type { UserForm, IUserProps, ReportForm } from "../utils/interfaces";
+import type { UserForm, IUserProps, ReportForm, IReportProps } from "../utils/interfaces";
 
 import { useLog } from "./log";
 
@@ -36,11 +35,7 @@ interface IFirestoreContext {
     signUp(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
     signIn(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
     signOut(): void,
-    getFirestore: (collectionName: string) => {
-        documents: any[],
-        loading: boolean,
-        error: Error | null
-    },
+    getReportsByUserId(userId: string | null | undefined): Promise<IReportProps[]>,
     addReport(
         event: React.FormEvent<HTMLFormElement>,
         formState: ReportForm,
@@ -246,43 +241,33 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
     };    
 
 
+    const getReportsByUserId = async (userId: string) => {
+        try {
+            setLoading(true)
+            const q = query(
+            collection(db, 'reports'), where("reportingUserId", "==", userId));
 
+            const querySnapshot = await getDocs(q);
+            const docs: any[] = [];
 
-    const getFirestore = (collectionName: string) => {
-        const [documents, setDocuments] = useState<any[]>([]);
-        const [loading, setLoading] = useState<boolean>(true);
-        const [error, setError] = useState<Error | null>(null);
+            querySnapshot.forEach((doc) => {
+                docs.push({ id: doc.id, ...doc.data() });
+            });
 
-        useEffect(() => {
-            const fetchDocuments = async () => {
-                try {
-                    const q = query(collection(db, collectionName));
-                    const querySnapshot: QuerySnapshot = await getDocs(q);
-                    const docs: any[] = [];
+            setLoading(false)
+            
+            return docs;
 
-                    querySnapshot.forEach((doc) => {
-                        docs.push({ id: doc.id, ...doc.data() });
-                    });
-
-                    setDocuments(docs);
-                    setLoading(false);
-                } catch (err) {
-                    setError(err as Error)
-                    setLoading(false)
-                    activeNotification("error")
-                    setNotificationContent({
-                        title: "Erro ao buscar dados no banco",
-                        message: "getFirestore() " + String(error)
-                    })
-                }
-            };
-
-            fetchDocuments();
-        }, [collectionName]);
-
-        return { documents, loading, error };
+        } catch (error) {
+            setLoading(false)
+            activeNotification("error");
+            setNotificationContent({
+                title: "Erro ao buscar denúncias",
+                message: "getReportsByUserId() " + String(error)
+            });
+            return [];
+        }
     };
-
 
 
     const addReport = async (
@@ -312,6 +297,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
                 number,
                 neighborhood,
                 referencePoint,
+                status: 'Em Análise',
                 description,
                 created_at: timestamp,
                 updated_at: timestamp,
@@ -336,7 +322,6 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
             })
         }
     }
-
 
 
     const editUser = async (event: React.FormEvent<HTMLFormElement>, id: string, name: string) => {
@@ -381,7 +366,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
             signUp,
             signIn,
             signOut,
-            getFirestore,
+            getReportsByUserId,
             addReport,
             editUser
         }}>

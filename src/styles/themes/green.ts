@@ -9,6 +9,7 @@ export default {
         gray: '#666',
         success: '#8BC34A',
         info: '#03A9F4',
-        warning: '#FF9800'
+        warning: '#FF9800',
+        fail: '#FF0000'
     }
 }
