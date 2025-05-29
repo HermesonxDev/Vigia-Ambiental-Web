@@ -3,10 +3,11 @@ import InputWithLabel from "../../components/InputWithLabel"
 import type { UserForm } from "../../utils/interfaces"
 import { useState } from "react"
 import { useFirestore } from "../../hooks/firestore"
+import Loading from "../../components/Loading"
 
 const SignUp: React.FC = () => {
 
-    const { signUp } = useFirestore()
+    const { loading, signUp } = useFirestore()
     
     const [formState, setFormState] = useState<UserForm>({
         name: '',
@@ -62,7 +63,10 @@ const SignUp: React.FC = () => {
                         </p>
                     </div>
 
-                    <Button>Entrar</Button>
+                    {!loading
+                        ? <Button>Entrar</Button>
+                        : <Loading marginTop="0"/>
+                    }
                 </Form>
             </Content>
         </Container>

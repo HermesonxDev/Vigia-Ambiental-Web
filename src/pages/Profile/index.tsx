@@ -6,11 +6,12 @@ import { useFirestore } from "../../hooks/firestore"
 import { useTheme } from "../../hooks/theme"
 import { Button, Container, Fields, Form } from "./style"
 import type { UserForm } from "../../utils/interfaces"
+import Loading from "../../components/Loading"
 
 const Profile: React.FC = () => {
 
     const { theme, handleChangeTheme } = useTheme()
-    const { user, editUser } = useFirestore()
+    const { user, loading, editUser } = useFirestore()
 
     const [formState, setFormState] = useState<UserForm>({
         uid: user?.uid,
@@ -58,7 +59,15 @@ const Profile: React.FC = () => {
                     />
                 </Fields>
 
-                <Button>Salvar</Button>
+                {!loading
+                    ? <Button>Salvar</Button>
+                    : <Loading
+                        marginTop="0"
+                        position="absolute"
+                        bottom="1.5rem"
+                        right="1.5rem"
+                      />
+                }
             </Form>
         </Container>
     )

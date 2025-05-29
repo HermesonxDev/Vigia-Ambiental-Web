@@ -20,6 +20,15 @@ export interface UserForm {
     password: string
 }
 
+export interface ReportForm {
+    reportingUserId: string | null | undefined,
+    street: string,
+    number: string,
+    neighborhood: string,
+    referencePoint: string,
+    description: string
+}
+
 export interface NotificationTypes {
     error: boolean,
     email: boolean,

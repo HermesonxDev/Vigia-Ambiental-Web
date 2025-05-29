@@ -23,7 +23,7 @@ import {
     signInWithEmailAndPassword
 } from "firebase/auth";
 
-import type { UserForm, IUserProps } from "../utils/interfaces";
+import type { UserForm, IUserProps, ReportForm } from "../utils/interfaces";
 
 import { useLog } from "./log";
 
@@ -32,6 +32,7 @@ let firestoreInstance: ReturnType<typeof getFirestoreDB> | null = null;
 interface IFirestoreContext {
     logged: boolean,
     user: IUserProps | null,
+    loading: boolean,
     signUp(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
     signIn(event: React.FormEvent<HTMLFormElement>, formState: UserForm): void,
     signOut(): void,
@@ -40,6 +41,11 @@ interface IFirestoreContext {
         loading: boolean,
         error: Error | null
     },
+    addReport(
+        event: React.FormEvent<HTMLFormElement>,
+        formState: ReportForm,
+        navigate: (path: string) => void
+    ): void,
     editUser(
         event: React.FormEvent<HTMLFormElement>,
         id: string | null | undefined,
@@ -84,12 +90,13 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         return onUser ? JSON.parse(onUser) : null
     })
 
-
+    const [loading, setLoading] = useState<boolean>(false)
     
     const signUp = async (event: React.FormEvent<HTMLFormElement>, formState: UserForm) => {
         event.preventDefault();
         
         try {
+            setLoading(true)
             const { name, email, password } = formState
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const timestamp = new Date().toISOString()
@@ -137,7 +144,11 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
                     message: 'Bem-vindo ao Vigia Ambiental'
                 })
             }
+
+            setLoading(false)
+
         } catch (error) {
+            setLoading(false)
             activeNotification("error")
             setNotificationContent({
                 title: "Erro ao criar o usuário",
@@ -152,6 +163,7 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         event.preventDefault();
     
         try {
+            setLoading(true)
             const { email, password } = formState
             await signInWithEmailAndPassword(auth, email, password);
     
@@ -188,7 +200,11 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
                     message: 'Bem-vindo ao Vigia Ambiental'
                 })
             }
+
+            setLoading(false)
+
         } catch (error) {
+            setLoading(false)
             activeNotification('error')
             setNotificationContent({
                 title: 'Erro ao tentar logar.',
@@ -269,10 +285,65 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
 
 
 
+    const addReport = async (
+        event: React.FormEvent<HTMLFormElement>,
+        formState: ReportForm,
+        navigate: (path: string) => void
+    ) => {
+        event.preventDefault()
+
+        try {
+            setLoading(true)
+
+            const {
+                reportingUserId,
+                street,
+                number,
+                neighborhood,
+                referencePoint,
+                description
+            } = formState
+
+            const timestamp = new Date().toISOString()
+
+            await addDoc(collection(db, "reports"), {
+                reportingUserId,
+                street,
+                number,
+                neighborhood,
+                referencePoint,
+                description,
+                created_at: timestamp,
+                updated_at: timestamp,
+                deleted_at: '',
+            })
+
+            setLoading(false)
+
+            activeNotification('success')
+            setNotificationContent({
+                title: 'Denuncia registrada com sucesso!',
+                message: 'Verifique suas denuncias em "Acompanhar Denuncias"!'
+            })
+
+            navigate('/')
+        } catch (error) {
+            setLoading(false)
+            activeNotification("error")
+            setNotificationContent({
+                title: "Erro ao criar denuncia",
+                message: `addReport(), ${String(error)}`
+            })
+        }
+    }
+
+
+
     const editUser = async (event: React.FormEvent<HTMLFormElement>, id: string, name: string) => {
         event.preventDefault();
     
         try {
+            setLoading(true)
             if (id) {
                 const userRef = doc(db, "users", id);
                 const response = await setDoc(
@@ -288,7 +359,11 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
                     message: ''
                 })
             }
+
+            setLoading(false)
+
         } catch (error) {
+            setLoading(false)
             activeNotification("error")
             setNotificationContent({
                 title: "Erro ao editar usuário",
@@ -302,10 +377,12 @@ const FirestoreProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) 
         <FirestoreContext.Provider value={{
             logged,
             user,
+            loading,
             signUp,
             signIn,
             signOut,
             getFirestore,
+            addReport,
             editUser
         }}>
             {children}
