@@ -33,6 +33,10 @@ export const Aside = styled.div `
     > h1 {
         color: ${props => props.theme.colors.white};
         padding-left: 10px;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     > div {
